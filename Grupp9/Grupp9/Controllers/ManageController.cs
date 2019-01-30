@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Grupp9.Models;
+using Datalager;
 
 namespace Grupp9.Controllers
 {
@@ -64,15 +65,20 @@ namespace Grupp9.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
+            var viewmodel = new ProfilViewModel();
+            using (var db = new InfoDbContext())
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
-            return View(model);
+                var profile = db.Profiler.SingleOrDefault(x => x.UserId == userId);
+                if (profile != null)
+                {
+                    viewmodel.Förnamn = profile.Förnamn;
+                    viewmodel.Efternamn = profile.Efternamn;
+                    viewmodel.Roll = profile.Roll;
+                   
+                }
+            }
+
+                return View(viewmodel);
         }
 
         //
