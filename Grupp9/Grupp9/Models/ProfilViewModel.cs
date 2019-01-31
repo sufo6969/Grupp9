@@ -17,5 +17,6 @@ namespace Grupp9.Models
         [Required(ErrorMessage = "Var vänlig fyll i din roll")]
         [StringLength(50, ErrorMessage = "Rollen måste innehålla minst 3 bokstäver", MinimumLength = 3)]
         public string Roll { get; set; }
+        public bool Admin { get; set; }
     }
 }
