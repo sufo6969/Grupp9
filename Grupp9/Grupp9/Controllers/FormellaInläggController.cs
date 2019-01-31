@@ -13,31 +13,35 @@ namespace Grupp9.Controllers
     public class FormellaInläggController : Controller
     {
         // GET: FormellaInlägg
+        
+        [Authorize]
         public ActionResult Index()
         {
+            var entities = new InfoDbContext();
 
-            return View();
+            return View(entities.FormellaInläggen.ToList());
         }
 
-
-        
         //[HttpPost]
         [Authorize]
         public ActionResult Skriv(FormellaInläggViewModell model)
         {
-            var db = new InfoDbContext();
-            var currentUser = User.Identity.GetUserId();
-
-            db.FormellaInläggen.Add(new FormellaInlägg
+            if (ModelState.IsValid)
             {
-                UserId = currentUser,
-                Titel = model.titel,
-                Text = model.text
-            });
+                var db = new InfoDbContext();
+                var currentUser = User.Identity.GetUserId();
 
-            db.SaveChanges();
+                db.FormellaInläggen.Add(new FormellaInlägg
+                {
+                    UserId = currentUser,
+                    Titel = model.titel,
+                    Text = model.text
+                });
 
-            return View();
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
 
 
         }
