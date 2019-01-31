@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using Grupp9.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -13,6 +16,8 @@ namespace Grupp9
     {
         protected void Application_Start()
         {
+            Database.SetInitializer<InfoDbContext>(new CreateDatabaseIfNotExists<InfoDbContext>());
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
