@@ -79,6 +79,15 @@ namespace Grupp9.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Förnamn { get; set; }
+
+        [Required]
+        public string Efternamn { get; set; }
+
+        [Required]
+        public string Roll { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -156,13 +156,23 @@ namespace Grupp9.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    using (var db = new InfoDbContext())
+                    {
+                        var profil = new Profil();
+                        profil.UserId = user.Id;
+                        profil.Förnamn = model.Förnamn;
+                        profil.Efternamn = model.Efternamn;
+                        profil.Roll = model.Roll;
+                        db.Profiler.Add(profil);
 
+                        db.SaveChanges();
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
