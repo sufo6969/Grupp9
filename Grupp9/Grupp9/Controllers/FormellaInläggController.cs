@@ -1,4 +1,4 @@
-﻿using Datalager;
+﻿
 using Grupp9.Models;
 using Microsoft.AspNet.Identity;
 using System;
@@ -15,31 +15,26 @@ namespace Grupp9.Controllers
         // GET: FormellaInlägg
         public ActionResult Index()
         {
-            
 
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Skriv(FormellaInläggViewModell model)
         {
             var db = new InfoDbContext();
-            var currentUser = "testtext";
+            var currentUser = User.Identity.GetUserId();
 
-            db.FormellaInläggen.Add(new Datalager.Models.FormellaInlägg
+            db.FormellaInläggen.Add(new FormellaInlägg
             {
                 UserId = currentUser,
                 Titel = model.titel,
                 Text = model.text
-
-
-
-
             });
 
             db.SaveChanges();
 
-            return View(model);
+            return View();
 
 
         }
