@@ -38,9 +38,15 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Roll, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Roll, new { @class = "form-control", @cols = "", @rows = 6 })
+        @Html.TextBoxFor(m => m.Roll, new { @class = "form-control" })
 
     </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Admin, new { @class = "control-label" })
+        @Html.EditorFor(m => m.Admin, new { @class = "form-control" })
+
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />

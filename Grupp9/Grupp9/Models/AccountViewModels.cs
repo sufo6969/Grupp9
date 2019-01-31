@@ -88,6 +88,8 @@ namespace Grupp9.Models
 
         [Required]
         public string Roll { get; set; }
+
+        public bool Admin { get; set; }
     }
 
     public class ResetPasswordViewModel
