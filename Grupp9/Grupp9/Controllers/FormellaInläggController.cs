@@ -26,42 +26,44 @@ namespace Grupp9.Controllers
         [Authorize]
         public ActionResult Skriv(FormellaInläggViewModell model, HttpPostedFileBase[] files)
         {
-            var db = new InfoDbContext();
-            var currentUser = User.Identity.GetUserId();
-            var nyttInlägg = new FormellaInlägg
+            if (model.text != null && model.titel != null)
             {
-                UserId = currentUser,
-                Titel = model.titel,
-                Text = model.text
-            };
-            db.FormellaInläggen.Add(nyttInlägg);
-            db.SaveChanges();
-            var bloggId = nyttInlägg.Id;
-
-            if (files != null)
-            {
-                foreach(HttpPostedFileBase file in files)
+                var db = new InfoDbContext();
+                var currentUser = User.Identity.GetUserId();
+                var nyttInlägg = new FormellaInlägg
                 {
-                    if(file != null)
+                    UserId = currentUser,
+                    Titel = model.titel,
+                    Text = model.text
+                };
+
+                db.FormellaInläggen.Add(nyttInlägg);
+                db.SaveChanges();
+                var bloggId = nyttInlägg.Id;
+
+                if (files != null)
+                {
+                    foreach (HttpPostedFileBase file in files)
                     {
-                        var FilNamn = Path.GetFileName(file.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Filer"), FilNamn);
-                        file.SaveAs(path);
-                        string FilenSparadSom = "/Filer/" + FilNamn;
-                        db.Filer.Add(new Fil
+                        if (file != null)
                         {
-                            BloggInläggId = bloggId,
-                            FilUrl = FilenSparadSom
-                        });
+                            var FilNamn = Path.GetFileName(file.FileName);
+                            string path = Path.Combine(Server.MapPath("~/Filer"), FilNamn);
+                            file.SaveAs(path);
+                            string FilenSparadSom = "/Filer/" + FilNamn;
+                            db.Filer.Add(new Fil
+                            {
+                                BloggInläggId = bloggId,
+                                FilUrl = FilenSparadSom
+                            });
+                        }
                     }
                 }
+
+                db.SaveChanges();
             }
 
-            db.SaveChanges();
-
             return View();
-
-
         }
     }
 }
