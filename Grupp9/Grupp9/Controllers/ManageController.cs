@@ -69,12 +69,14 @@ namespace Grupp9.Controllers
             using (var db = new InfoDbContext())
             {
                 var profile = db.Profiler.SingleOrDefault(x => x.UserId == userId);
-
+                if (profile != null)
+                {
                     viewmodel.Förnamn = profile.Förnamn;
                     viewmodel.Efternamn = profile.Efternamn;
                     viewmodel.Roll = profile.Roll;
-            }
 
+                }
+            }
                 return View(viewmodel);
         }
 
