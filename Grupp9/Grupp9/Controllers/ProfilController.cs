@@ -18,17 +18,22 @@ namespace Grupp9.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 var profile = db.Profiler.SingleOrDefault(x => x.UserId == userId);
-                if (profile != null)
-                {
-                    profile.Förnamn = model.Förnamn;
-                    profile.Efternamn = model.Efternamn;
-                    profile.Roll = model.Roll;
 
-                    db.SaveChanges();
-                    ViewBag.StatusMessage = "Dina ändringar är sparade!";
+                if (profile == null)
+                {
+                    profile = new Datalager.Models.Profil();
+                    profile.UserId = userId;
+                    db.Profiler.Add(profile);
                 }
-                return View();
-                
+
+                profile.Förnamn = model.Förnamn;
+                profile.Efternamn = model.Efternamn;
+                profile.Roll = model.Roll;
+
+                db.SaveChanges();
+                ViewBag.StatusMessage = "Dina ändringar är sparade!";
+                return View("~/Views/Manage/Index.cshtml", model);
+
             }
         }
     }
