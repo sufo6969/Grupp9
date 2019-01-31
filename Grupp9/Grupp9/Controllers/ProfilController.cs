@@ -1,4 +1,4 @@
-﻿using Datalager;
+﻿
 using Grupp9.Models;
 using Microsoft.AspNet.Identity;
 using System;
@@ -21,7 +21,7 @@ namespace Grupp9.Controllers
 
                 if (profile == null)
                 {
-                    profile = new Datalager.Models.Profil();
+                    profile = new Profil();
                     profile.UserId = userId;
                     db.Profiler.Add(profile);
                 }

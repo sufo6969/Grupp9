@@ -1,4 +1,5 @@
-﻿using Datalager;
+﻿
+using Grupp9.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
