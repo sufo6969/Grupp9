@@ -15,5 +15,8 @@ namespace Grupp9.Models
         [Required]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Texten måste vara mellan 3 och 50 tecken lång")]
         public string titel { get; set; }
+
+        [Display(Name = "Browse File")]
+        public HttpPostedFileBase[] files { get; set; }
     }
 }
