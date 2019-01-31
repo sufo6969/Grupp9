@@ -19,7 +19,10 @@ namespace Grupp9.Controllers
             return View();
         }
 
+
+        
         //[HttpPost]
+        [Authorize]
         public ActionResult Skriv(FormellaInläggViewModell model)
         {
             var db = new InfoDbContext();

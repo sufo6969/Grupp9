@@ -8,9 +8,12 @@ namespace Grupp9.Models
 {
     public class FormellaInläggViewModell
     {
-        [StringLength(300, ErrorMessage = "Texten kan inte vara längre än 300 tecken") ]
+        [Required]
+        [StringLength(300, MinimumLength = 10, ErrorMessage = "Texten måste vara mellan 10 och 300 tecken lång") ]
         public string text { get; set; }
-        [StringLength(50, ErrorMessage = "Texten kan inte vara längre än 50 tecken")]
+
+        [Required]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Texten måste vara mellan 3 och 50 tecken lång")]
         public string titel { get; set; }
     }
 }
