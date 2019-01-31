@@ -40,6 +40,7 @@ namespace Grupp9.Controllers
 
                 db.FormellaInläggen.Add(nyttInlägg);
                 db.SaveChanges();
+                
                 var bloggId = nyttInlägg.Id;
 
                 if (files != null)
@@ -62,6 +63,7 @@ namespace Grupp9.Controllers
                 }
 
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View();
