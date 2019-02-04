@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Grupp9.Models.LäsaKommenterarViewModel>
+﻿@model Grupp9.Models.LäsaKommenterarViewModel
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -6,28 +6,29 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.kommentarText)
+            Kommentar
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bloggId)
+            Id
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.kommentarText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bloggId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.listan)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kommentarText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bloggId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>

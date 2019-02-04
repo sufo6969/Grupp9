@@ -90,22 +90,25 @@ namespace Grupp9.Controllers
         {
             var db = new InfoDbContext();
 
-            var Lista = new ListaKommenterare();
+            var FullLista = new ListaKommenterare();
+            var lista = new List<LäsaKommenterarViewModel>();
 
             foreach (var x in db.Kommentarer)
             {
                 if (x.BloggId == model.bloggId)
                 {
-                    Lista.läsaKommenterarViewModel
+                    lista.Add(new LäsaKommenterarViewModel
                     {
                         kommentarText = x.Text,
                         bloggId = x.BloggId
                     });
 
                 }
-
-
             }
+            FullLista = new ListaKommenterare
+            {
+                listan = lista.ToList()
+            };
 
             return View();
         }
