@@ -28,4 +28,15 @@ namespace Grupp9.Models
 
         public int bloggId { get; set; }
     }
+
+    public class LäsaKommenterarViewModel
+    {
+        public string kommentarText { get; set; }
+        public int bloggId { get; set; }
+       
+    }
+    public class ListaKommenterare
+    {
+        public List<LäsaKommenterarViewModel> listan { get; set;}
+    }
 }

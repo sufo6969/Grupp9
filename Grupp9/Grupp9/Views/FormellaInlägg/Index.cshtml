@@ -36,9 +36,12 @@
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                
+
                 @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
                 @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
+                
+
+
             </td>
         </tr>
     }

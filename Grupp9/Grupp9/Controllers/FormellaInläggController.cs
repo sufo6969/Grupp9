@@ -14,7 +14,7 @@ namespace Grupp9.Controllers
     public class FormellaInläggController : Controller
     {
         // GET: FormellaInlägg
-        
+
         [Authorize]
         public ActionResult Index()
         {
@@ -40,7 +40,7 @@ namespace Grupp9.Controllers
 
                 db.FormellaInläggen.Add(nyttInlägg);
                 db.SaveChanges();
-                
+
                 var bloggId = nyttInlägg.Id;
 
                 if (files != null)
@@ -71,7 +71,7 @@ namespace Grupp9.Controllers
 
         public ActionResult SkrivKommentar(SkrivKommentarViewModel model)
         {
-            if (model.kommentarText != null )
+            if (model.kommentarText != null)
             {
                 var db = new InfoDbContext();
                 var currentUser = User.Identity.GetUserId();
@@ -85,5 +85,31 @@ namespace Grupp9.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult LäsKommentar(LäsaKommenterarViewModel model)
+        {
+            var db = new InfoDbContext();
+
+            var Lista = new ListaKommenterare();
+
+            foreach (var x in db.Kommentarer)
+            {
+                if (x.BloggId == model.bloggId)
+                {
+                    Lista.läsaKommenterarViewModel
+                    {
+                        kommentarText = x.Text,
+                        bloggId = x.BloggId
+                    });
+
+                }
+
+
+            }
+
+            return View();
+        }
+
+
     }
 }
