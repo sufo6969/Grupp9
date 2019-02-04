@@ -36,9 +36,9 @@
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                
+                @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
+                @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
             </td>
         </tr>
     }

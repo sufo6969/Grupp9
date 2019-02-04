@@ -19,4 +19,13 @@ namespace Grupp9.Models
         [Display(Name = "Browse File")]
         public HttpPostedFileBase[] files { get; set; }
     }
+
+    public class SkrivKommentarViewModel
+    {
+        [Required]
+        [StringLength(300, MinimumLength = 10, ErrorMessage = "Texten måste vara mellan 10 och 300 tecken lång")]
+        public string kommentarText { get; set; }
+
+        public int bloggId { get; set; }
+    }
 }

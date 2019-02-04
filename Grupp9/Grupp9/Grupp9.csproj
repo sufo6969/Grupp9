@@ -327,6 +327,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\FormellaInlägg\Skriv.cshtml" />
     <Content Include="Views\FormellaInlägg\Index.cshtml" />
+    <Content Include="Views\FormellaInlägg\SkrivKommentar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

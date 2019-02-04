@@ -68,5 +68,22 @@ namespace Grupp9.Controllers
 
             return View();
         }
+
+        public ActionResult SkrivKommentar(SkrivKommentarViewModel model)
+        {
+            if (model.kommentarText != null )
+            {
+                var db = new InfoDbContext();
+                var currentUser = User.Identity.GetUserId();
+                db.Kommentarer.Add(new Kommentar
+                {
+                    UserId = currentUser,
+                    Text = model.kommentarText,
+                    BloggId = model.bloggId
+                });
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
