@@ -43,8 +43,9 @@
                 @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
                 </td>
                 <td>
-                @{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}
-
+                @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
+                }
+                    @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
             </td>
         </tr>
     }
