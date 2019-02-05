@@ -103,13 +103,12 @@ namespace Grupp9.Controllers
                         kommentarText = x.Text,
                         bloggId = x.BloggId
                     });
-
                 }
             }
             
             model.listan = lista.ToList();
 
-            return View();
+            return View(model);
         }
 
 
