@@ -38,5 +38,6 @@ namespace Grupp9.Models
     public class ListaKommenterare
     {
         public List<LäsaKommenterarViewModel> listan { get; set;}
+        public int bloggId { get; set; }
     }
 }

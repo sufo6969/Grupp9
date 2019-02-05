@@ -86,13 +86,14 @@ namespace Grupp9.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult LäsKommentar(LäsaKommenterarViewModel model)
+        public ActionResult LäsKommentar(ListaKommenterare model)
         {
             var db = new InfoDbContext();
 
-            var FullLista = new ListaKommenterare();
+           // var FullLista = new ListaKommenterare();
             var lista = new List<LäsaKommenterarViewModel>();
 
+            
             foreach (var x in db.Kommentarer)
             {
                 if (x.BloggId == model.bloggId)
@@ -105,10 +106,8 @@ namespace Grupp9.Controllers
 
                 }
             }
-            FullLista = new ListaKommenterare
-            {
-                listan = lista.ToList()
-            };
+            
+            model.listan = lista.ToList();
 
             return View();
         }
