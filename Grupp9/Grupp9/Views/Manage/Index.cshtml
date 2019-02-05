@@ -23,16 +23,25 @@
 
         <div class="form-group">
             <input type="submit" value="Spara" class="btn btn-primary pull-right" />
-            <div class="clearfix"></div> 
+            <div class="clearfix"></div>
         </div>
         <p class="text-success">@ViewBag.StatusMessage</p>
     }
 
+    @{var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+        if(adminStatus == "true")
+        {
+            <h2>Du är admin</h2>
+        } else
+        {
+            <h2>Du är inte admin</h2>
+        }
+        }
     <div>
         @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
     </div>
 
-   
+
 
 
 

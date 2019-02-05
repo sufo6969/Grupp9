@@ -29,11 +29,22 @@ namespace Grupp9.Controllers
                 profile.Förnamn = model.Förnamn;
                 profile.Efternamn = model.Efternamn;
                 profile.Roll = model.Roll;
-
+                
                 db.SaveChanges();
                 ViewBag.StatusMessage = "Dina ändringar är sparade!";
                 return View("~/Views/Manage/Index.cshtml", model);
 
+            }
+        }
+
+        public bool ÄrAdmin()
+        {
+            using (var db = new InfoDbContext())
+            {
+
+                var userId = User.Identity.GetUserId();
+                var profile = db.Profiler.SingleOrDefault(x => x.UserId == userId);
+                return profile.Admin;
             }
         }
     }
