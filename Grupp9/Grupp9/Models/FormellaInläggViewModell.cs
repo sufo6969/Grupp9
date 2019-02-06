@@ -33,11 +33,14 @@ namespace Grupp9.Models
     {
         public string kommentarText { get; set; }
         public int bloggId { get; set; }
-       
+        public int kommentarID { get; set; }
+        public string userID { get; set; }
+        
     }
     public class ListaKommenterare
     {
         public List<LäsaKommenterarViewModel> listan { get; set;}
         public int bloggId { get; set; }
     }
+
 }

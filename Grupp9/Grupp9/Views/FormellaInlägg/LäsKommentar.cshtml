@@ -27,9 +27,15 @@
                 @Html.DisplayFor(modelItem => item.bloggId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.userID)
+                <p>Text som syns</p>
+                @{ var ärinloggad = Html.Action("Vemsomskrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
+
+                    if (ärinloggad == "true")
+                    { @Html.ActionLink("Radera", "Delete", new { IDet = item.kommentarID });}
+
+                }
+
             </td>
         </tr>
 
