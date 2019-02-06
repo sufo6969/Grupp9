@@ -102,7 +102,8 @@ namespace Grupp9.Controllers
                     {
                         kommentarText = x.Text,
                         bloggId = x.BloggId,
-                        kommentarID = x.Id
+                        kommentarID = x.Id,
+                        userID = x.UserId
 
                     });
                 }
@@ -131,16 +132,16 @@ namespace Grupp9.Controllers
             return RedirectToAction("Index");
         }
 
-        public bool Vemsomskrivit(string userID)
-        {
-            var db = new InfoDbContext();
-            var inloggad = User.Identity.GetUserId();
+        //public bool Vemsomskrivit(string userID)
+        //{
+        //    var db = new InfoDbContext();
+        //    var inloggad = User.Identity.GetUserId();
 
-            if (userID == inloggad) { return true; }
-            else
-            {
-             return false;
-            }
-        }
+        //    if (userID == inloggad) { return true; }
+        //    else
+        //    {
+        //     return false;
+        //    }
+        //}
     }
 }

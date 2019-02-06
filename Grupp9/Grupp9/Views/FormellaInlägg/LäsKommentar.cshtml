@@ -27,14 +27,7 @@
                 @Html.DisplayFor(modelItem => item.bloggId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.userID)
-                <p>Text som syns</p>
-                @{ var ärinloggad = Html.Action("Vemsomskrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
-
-                    if (ärinloggad == "true")
-                    { @Html.ActionLink("Radera", "Delete", new { IDet = item.kommentarID });}
-
-                }
+                 @Html.ActionLink("Radera", "Delete", new { IDet = item.kommentarID });
 
             </td>
         </tr>
