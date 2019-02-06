@@ -30,27 +30,18 @@
         <p class="text-success">@ViewBag.StatusMessage</p>
     }
 
-    @*@Html.LabelFor(m => m.Admin)
-
-
-    @Html.DisplayFor(m => m.Admin)*@
-)
-
-    @*@if (Model.Admin)
-    {
-
-        <div style="display:none">
-            <P>
-                Du är admin
-            </P>
-            
-
-        </div>
-    }*@
-
-            <div>
-                @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
-            </div>
+    @{var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+        if(adminStatus == "true")
+        {
+            <h2>Du är admin</h2>
+        } else
+        {
+            <h2>Du är inte admin</h2>
+        }
+        }
+    <div>
+        @Html.ActionLink("Byt ditt lösenord", "ChangePassword")
+    </div>
 
 
 
