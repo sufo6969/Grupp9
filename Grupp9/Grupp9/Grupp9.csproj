@@ -329,6 +329,7 @@
     <Content Include="Views\FormellaInlägg\Index.cshtml" />
     <Content Include="Views\FormellaInlägg\SkrivKommentar.cshtml" />
     <Content Include="Views\FormellaInlägg\LäsKommentar.cshtml" />
+    <Content Include="Views\FormellaInlägg\Namn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using Grupp9.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Grupp9.Controllers
 {

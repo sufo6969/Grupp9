@@ -19,8 +19,15 @@ namespace Grupp9.Controllers
         public ActionResult Index()
         {
             var entities = new InfoDbContext();
+            var currentUser = User.Identity.GetUserId();
 
             return View(entities.FormellaInläggen.ToList());
+        }
+
+        public string Namn(string userid) {
+            var entities = new InfoDbContext();
+            var profil = entities.Profiler.SingleOrDefault(x => x.UserId == userid);
+            return (profil.Förnamn + " " + profil.Efternamn); 
         }
 
         //[HttpPost]
