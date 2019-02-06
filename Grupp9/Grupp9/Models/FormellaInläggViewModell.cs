@@ -9,7 +9,7 @@ namespace Grupp9.Models
     public class FormellaInläggViewModell
     {
         [Required]
-        [StringLength(300, MinimumLength = 10, ErrorMessage = "Texten måste vara mellan 10 och 300 tecken lång") ]
+        [StringLength(300, MinimumLength = 10, ErrorMessage = "Texten måste vara mellan 10 och 300 tecken lång")]
         public string text { get; set; }
 
         [Required]
@@ -33,11 +33,23 @@ namespace Grupp9.Models
     {
         public string kommentarText { get; set; }
         public int bloggId { get; set; }
-       
+
     }
     public class ListaKommenterare
     {
-        public List<LäsaKommenterarViewModel> listan { get; set;}
+        public List<LäsaKommenterarViewModel> listan { get; set; }
         public int bloggId { get; set; }
+    }
+
+    public class FilerViewModel
+    {
+        public string filNamn { get; set; }
+        public int bloggId { get; set; }
+
+    }
+    public class ListaFilerViewModel
+    {
+        public List<FilerViewModel> listanAvFiler { get; set; }
+        public int BloggInläggId { get; set; }
     }
 }
