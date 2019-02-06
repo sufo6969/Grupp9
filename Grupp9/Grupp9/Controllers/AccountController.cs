@@ -126,6 +126,7 @@ namespace Grupp9.Controllers
                         profil.Förnamn = model.Förnamn;
                         profil.Efternamn = model.Efternamn;
                         profil.Roll = model.Roll;
+                        profil.Admin = model.Admin;
                         db.Profiler.Add(profil);
 
                         db.SaveChanges();
