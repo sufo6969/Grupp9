@@ -116,15 +116,6 @@ namespace Grupp9.Controllers
             return View(model);
         }
 
-        //public FileResult LaddaNer(string fil)
-        //{
-        //    byte[] fileBytes = System.IO.File.ReadAllBytes(@"/Filer/"+fil);
-        //    //var response = new FileContentResult(fileBytes, "application/ocet-stream");
-        //    //response.FileDownloadName = fil;
-
-        //    //return response;
-        //    return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fil);
-        //}
 
         public ActionResult FilLista(ListaFilerViewModel model)
         {
