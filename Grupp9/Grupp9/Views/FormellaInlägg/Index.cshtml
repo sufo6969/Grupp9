@@ -18,12 +18,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Titel)
         </th>
-        <th>
+        <th >
             @Html.DisplayNameFor(model => model.Text)
         </th>
-        <th>Filer</th>
         <th> Skriv kommentar</th>
-        <th>kommentarer</th>
+        <th >kommentarer</th>
     </tr>
 
     @foreach (var item in Model)
@@ -36,19 +35,19 @@
                 @Html.DisplayFor(modelItem => item.Titel)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @*Här vill vi ha filerna*@
-                @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
-                }
+                <div >
+                    @Html.DisplayFor(modelItem => item.Text)
+                    @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
+                    }
+                
+                </div>
             </td>
             <td>
 
                 @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
                 @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
                 </td>
-                <td>
+                <td >
                 @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
                 }
                     @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@

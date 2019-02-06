@@ -1,15 +1,12 @@
 ﻿@model Grupp9.Models.ListaFilerViewModel
+@{
 
-<h2>Den visas ändå....</h2>
+                Layout = null;
+}
 
-@foreach(var item in Model.listanAvFiler)
+@foreach (var item in Model.listanAvFiler)
 {
-<ul>
-    <li>@item.filNamn</li>
-    <a href="FormellaInlägg/LaddaNer?fil=@item.filNamn" target="_blank">Ladda Ner</a>
-    <a href="@Url.Content(item.filNamn)" target="_blank">Ladda Ner</a>
-    <a href="FormellaInlägg/LaddaNer?fil=@Url.Content(item.filNamn)" target="_blank">Ladda Ner3</a>
 
+    <button><a href="@Url.Content(item.filNamn)" target="_blank"> @item.filNamn</a></button>
 
-</ul>
 }
