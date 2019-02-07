@@ -1,0 +1,12 @@
+﻿@model Grupp9.Models.ListaFilerViewModel
+@{
+
+                Layout = null;
+}
+
+@foreach (var item in Model.listanAvFiler)
+{
+
+    <button><a href="@Url.Content(item.filNamn)" target="_blank"> @item.filNamn</a></button>
+
+}

@@ -124,5 +124,26 @@ namespace Grupp9.Controllers
         }
 
 
+        public ActionResult FilLista(ListaFilerViewModel model)
+        {
+            var lista = new List<FilerViewModel>();
+            var db = new InfoDbContext();
+
+            foreach (var fil in db.Filer)
+            {
+                if(fil.BloggInläggId == model.BloggInläggId)
+                {
+                    lista.Add(new FilerViewModel
+                    {
+                        filNamn = fil.FilUrl
+                    });
+                }
+            }
+            model.listanAvFiler = lista.ToList();
+
+            return View(model);
+        }
+
+
     }
 }
