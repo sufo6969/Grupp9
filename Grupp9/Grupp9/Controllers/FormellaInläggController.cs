@@ -132,16 +132,27 @@ namespace Grupp9.Controllers
             return RedirectToAction("Index");
         }
 
-        //public bool Vemsomskrivit(string userID)
-        //{
-        //    var db = new InfoDbContext();
-        //    var inloggad = User.Identity.GetUserId();
+        public bool Vemsomskrivit(string userID)
+        {
+            var db = new InfoDbContext();
+            var inloggad = User.Identity.GetUserId();
 
-        //    if (userID == inloggad) { return true; }
-        //    else
-        //    {
-        //     return false;
-        //    }
-        //}
+            if (userID == inloggad) { return true; }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string NamnFrånUserId(string userId)
+        {
+            var db = new InfoDbContext();
+           
+            var profilen = db.Profiler.FirstOrDefault(p => p.UserId == userId);
+            var förnamn = profilen.Förnamn;
+            var efternamn = profilen.Efternamn;
+
+            return förnamn + " " + efternamn;
+        }
     }
 }
