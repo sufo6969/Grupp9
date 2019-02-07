@@ -108,7 +108,10 @@ namespace Grupp9.Controllers
                     lista.Add(new LäsaKommenterarViewModel
                     {
                         kommentarText = x.Text,
-                        bloggId = x.BloggId
+                        bloggId = x.BloggId,
+                        kommentarID = x.Id,
+                        userID = x.UserId
+
                     });
                 }
             }
@@ -145,5 +148,39 @@ namespace Grupp9.Controllers
         }
 
 
+        public ActionResult Delete(int IDet)
+        {
+            var db = new InfoDbContext();
+            var kommentaren = db.Kommentarer.FirstOrDefault(k => k.Id == IDet);
+
+
+            db.Kommentarer.Remove(kommentaren);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public bool Vemsomskrivit(string userID)
+        {
+            var db = new InfoDbContext();
+            var inloggad = User.Identity.GetUserId();
+
+            if (userID == inloggad) { return true; }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string NamnFrånUserId(string userId)
+        {
+            var db = new InfoDbContext();
+           
+            var profilen = db.Profiler.FirstOrDefault(p => p.UserId == userId);
+            var förnamn = profilen.Förnamn;
+            var efternamn = profilen.Efternamn;
+
+            return förnamn + " " + efternamn;
+        }
     }
 }

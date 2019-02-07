@@ -13,25 +13,32 @@
             Kommentar
         </th>
         <th>
-            Id
+            Namn
         </th>
         <th></th>
     </tr>*@
 
     @foreach (var item in Model.listan)
     {
-        
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.kommentarText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.bloggId)
+                @{ var fulltNamn = Html.Action("NamnFrånUserId", "FormellaInlägg", new { userId = item.userID });
+                    <h3>@fulltNamn</h3>
+                    }
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            
+                @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
+                    if (harSkrivit == "True")
+                    {
+                        @Html.ActionLink("Radera", "Delete", new { IDet = item.kommentarID });
+                    }
+                  
+                }
             </td>
         </tr>
 
