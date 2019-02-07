@@ -191,5 +191,19 @@ namespace Grupp9.Controllers
 
             return förnamn + " " + efternamn;
         }
+
+        public ActionResult redigeraInlägg(redigeraInläggViewModel model)
+        {
+            var db = new InfoDbContext();
+            var inlägg = db.FormellaInläggen.FirstOrDefault(i => i.Id == model.id);
+
+            inlägg.Titel = model.titel;
+            inlägg.Text = model.text;
+
+
+            db.SaveChanges();
+            return View(model);
+
+        }
     }
 }
