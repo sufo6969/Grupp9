@@ -1,11 +1,5 @@
 ﻿@model Grupp9.Models.ListaKommenterare 
 
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 @if (Model.listan != null) {
 <table class="table">
     @*<tr>
@@ -27,7 +21,7 @@
             </td>
             <td>
                 @{ var fulltNamn = Html.Action("NamnFrånUserId", "FormellaInlägg", new { userId = item.userID });
-                    <h3>@fulltNamn</h3>
+                    @fulltNamn
                     }
             </td>
             <td>

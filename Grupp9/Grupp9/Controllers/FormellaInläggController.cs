@@ -160,9 +160,18 @@ namespace Grupp9.Controllers
             return RedirectToAction("Index");
         }
 
-        public bool Vemsomskrivit(string userID)
+        public ActionResult DeleteFormellaInlägg(int id)
         {
             var db = new InfoDbContext();
+            var inlägget = db.FormellaInläggen.FirstOrDefault(i => i.Id == id);
+            db.FormellaInläggen.Remove(inlägget);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public bool Vemsomskrivit(string userID)
+        {
             var inloggad = User.Identity.GetUserId();
 
             if (userID == inloggad) { return true; }
