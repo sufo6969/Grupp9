@@ -23,3 +23,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.kommentarText {
+    width: 200px;
+    height: 50px;
+}

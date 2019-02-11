@@ -147,6 +147,30 @@ namespace Grupp9.Controllers
             return View(model);
         }
 
+        public ActionResult LäggTillKategori (FormellaInläggViewModell model)
+        {
+            if (model.KategoriNamn != null)
+            {
+
+                var db = new InfoDbContext();
+                var currentUser = User.Identity.GetUserId();
+                db.Kategori.Add(new Kategorier
+                {
+                    UserId = currentUser,
+                    Namn = model.KategoriNamn,
+                    Id = model.KategoriId,
+                   
+                });
+               
+                db.SaveChanges();
+               
+            }
+            return RedirectToAction("Skriv");
+
+
+        }
+
+        
 
         public ActionResult Delete(int IDet)
         {
