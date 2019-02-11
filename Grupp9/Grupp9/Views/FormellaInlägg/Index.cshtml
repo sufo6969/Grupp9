@@ -38,7 +38,11 @@
                     if (harSkrivit == "True")
                     {
                         @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", new { id = item.Id });
-                    }}
+                        <br />
+                        @Html.ActionLink("Redigera", "redigeraInlägg", new { id = item.Id });
+
+                    }
+                }
             </td>
             <td>
                 <div >
