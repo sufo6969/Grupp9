@@ -24,10 +24,11 @@ namespace Grupp9.Controllers
             return View(entities.FormellaInläggen.ToList());
         }
 
-        public string Namn(string userid) {
+        public string Namn(string userid)
+        {
             var entities = new InfoDbContext();
             var profil = entities.Profiler.SingleOrDefault(x => x.UserId == userid);
-            return (profil.Förnamn + " " + profil.Efternamn); 
+            return (profil.Förnamn + " " + profil.Efternamn);
         }
 
         //[HttpPost]
@@ -134,7 +135,7 @@ namespace Grupp9.Controllers
 
             foreach (var fil in db.Filer)
             {
-                if(fil.BloggInläggId == model.BloggInläggId)
+                if (fil.BloggInläggId == model.BloggInläggId)
                 {
                     lista.Add(new FilerViewModel
                     {
@@ -184,7 +185,7 @@ namespace Grupp9.Controllers
         public string NamnFrånUserId(string userId)
         {
             var db = new InfoDbContext();
-           
+
             var profilen = db.Profiler.FirstOrDefault(p => p.UserId == userId);
             var förnamn = profilen.Förnamn;
             var efternamn = profilen.Efternamn;
@@ -198,12 +199,40 @@ namespace Grupp9.Controllers
             var inlägg = db.FormellaInläggen.FirstOrDefault(i => i.Id == model.id);
 
             inlägg.Titel = model.titel;
-            inlägg.Text = model.text;
+           inlägg.Text = model.text;
 
+           
 
             db.SaveChanges();
-            return View(model);
+            return View("redigeraInlägg",model);
 
+        }
+
+        [HttpPost]
+        public ActionResult sparadInlägg(redigeraInläggViewModel model)
+        {
+            using (var db = new InfoDbContext())
+            {
+                var userId = User.Identity.GetUserId();
+                var inlägg = db.FormellaInläggen.SingleOrDefault(x => x.UserId == userId);
+
+                if (inlägg == null)
+                {
+                    inlägg = new FormellaInlägg();
+                   inlägg.UserId = userId;
+                    db.FormellaInläggen.Add(inlägg);
+                }
+
+
+                inlägg.Titel = model.titel;
+                inlägg.Text = model.text;
+               
+
+                db.SaveChanges();
+                ViewBag.StatusMessage = "Dina ändringar är sparade!";
+                return View("~/Views/FormellaInlägg/Index.cshtml", model);
+
+            }
         }
     }
 }
