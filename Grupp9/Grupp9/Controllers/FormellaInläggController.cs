@@ -193,6 +193,7 @@ namespace Grupp9.Controllers
             return förnamn + " " + efternamn;
         }
 
+
         public ActionResult redigeraInlägg(redigeraInläggViewModel model)
         {
             var db = new InfoDbContext();
@@ -200,15 +201,8 @@ namespace Grupp9.Controllers
             if (model.text != null && model.titel != null)
             {
                
-
-
-
                 inlägg.Titel = model.titel;
                 inlägg.Text = model.text;
-
-
-
-
 
                 db.SaveChanges();
             }
@@ -226,31 +220,7 @@ namespace Grupp9.Controllers
                 
             
 
-    [HttpPost]
-        public ActionResult sparadInlägg(redigeraInläggViewModel model)
-        {
-            using (var db = new InfoDbContext())
-            {
-                var userId = User.Identity.GetUserId();
-                var inlägg = db.FormellaInläggen.SingleOrDefault(x => x.UserId == userId);
-
-                if (inlägg == null)
-                {
-                    inlägg = new FormellaInlägg();
-                   inlägg.UserId = userId;
-                    db.FormellaInläggen.Add(inlägg);
-                }
-
-
-                inlägg.Titel = model.titel;
-                inlägg.Text = model.text;
-               
-
-                db.SaveChanges();
-                ViewBag.StatusMessage = "Dina ändringar är sparade!";
-                return View("~/Views/FormellaInlägg/Index.cshtml", model);
-
-            }
-        }
+   
+        
     }
 }
