@@ -24,10 +24,11 @@ namespace Grupp9.Controllers
             return View(entities.FormellaInläggen.ToList());
         }
 
-        public string Namn(string userid) {
+        public string Namn(string userid)
+        {
             var entities = new InfoDbContext();
             var profil = entities.Profiler.SingleOrDefault(x => x.UserId == userid);
-            return (profil.Förnamn + " " + profil.Efternamn); 
+            return (profil.Förnamn + " " + profil.Efternamn);
         }
 
         //[HttpPost]
@@ -134,7 +135,7 @@ namespace Grupp9.Controllers
 
             foreach (var fil in db.Filer)
             {
-                if(fil.BloggInläggId == model.BloggInläggId)
+                if (fil.BloggInläggId == model.BloggInläggId)
                 {
                     lista.Add(new FilerViewModel
                     {
@@ -184,12 +185,42 @@ namespace Grupp9.Controllers
         public string NamnFrånUserId(string userId)
         {
             var db = new InfoDbContext();
-           
+
             var profilen = db.Profiler.FirstOrDefault(p => p.UserId == userId);
             var förnamn = profilen.Förnamn;
             var efternamn = profilen.Efternamn;
 
             return förnamn + " " + efternamn;
         }
+
+
+        public ActionResult redigeraInlägg(redigeraInläggViewModel model)
+        {
+            var db = new InfoDbContext();
+            var inlägg = db.FormellaInläggen.FirstOrDefault(i => i.Id == model.id);
+            if (model.text != null && model.titel != null)
+            {
+               
+                inlägg.Titel = model.titel;
+                inlägg.Text = model.text;
+
+                db.SaveChanges();
+            }
+            model.titel = inlägg.Titel;
+            model.text = inlägg.Text;
+           
+            return View(model);
+
+
+        }
+
+       
+      
+        
+                
+            
+
+   
+        
     }
 }
