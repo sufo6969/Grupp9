@@ -8,7 +8,7 @@
 <h2>Formella inlägg</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Skriv")
+    @Html.ActionLink("Skriv nytt inlägg", "Skriv")
 </p>
 <table class="table">
     <tr>
@@ -36,6 +36,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titel)
+                @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
+                    if (harSkrivit == "True")
+                    {
+                        @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", new { id = item.Id });
+                        <br />
+                        @Html.ActionLink("Redigera", "redigeraInlägg", new { id = item.Id });
+
+                    }
+                }
             </td>
             <td>
                 <div >
