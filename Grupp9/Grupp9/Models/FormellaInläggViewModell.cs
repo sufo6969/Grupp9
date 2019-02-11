@@ -33,7 +33,9 @@ namespace Grupp9.Models
     {
         public string kommentarText { get; set; }
         public int bloggId { get; set; }
-
+        public int kommentarID { get; set; }
+        public string userID { get; set; }
+        
     }
     public class ListaKommenterare
     {
@@ -52,4 +54,5 @@ namespace Grupp9.Models
         public List<FilerViewModel> listanAvFiler { get; set; }
         public int BloggInläggId { get; set; }
     }
+
 }
