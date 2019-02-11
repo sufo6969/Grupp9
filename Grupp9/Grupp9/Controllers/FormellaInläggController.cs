@@ -197,18 +197,36 @@ namespace Grupp9.Controllers
         {
             var db = new InfoDbContext();
             var inlägg = db.FormellaInläggen.FirstOrDefault(i => i.Id == model.id);
+            if (model.text != null && model.titel != null)
+            {
+               
 
-            inlägg.Titel = model.titel;
-           inlägg.Text = model.text;
 
+
+                inlägg.Titel = model.titel;
+                inlägg.Text = model.text;
+
+
+
+
+
+                db.SaveChanges();
+            }
+            model.titel = inlägg.Titel;
+            model.text = inlägg.Text;
            
-
-            db.SaveChanges();
             return View(model);
+
 
         }
 
-        [HttpPost]
+       
+      
+        
+                
+            
+
+    [HttpPost]
         public ActionResult sparadInlägg(redigeraInläggViewModel model)
         {
             using (var db = new InfoDbContext())
