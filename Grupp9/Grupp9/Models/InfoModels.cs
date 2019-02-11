@@ -24,6 +24,17 @@ namespace Grupp9.Models
         public string Text { get; set; }
     }
 
+    public class Kategorier
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Namn { get; set; }
+        public int BloggInläggId { get; set; }
+        public string UserId { get; set; }
+
+    }
+
+
     public class Kommentar
     {
         [Key]
@@ -48,6 +59,7 @@ namespace Grupp9.Models
         public DbSet<FormellaInlägg> FormellaInläggen { get; set; }
         public DbSet<Profil> Profiler { get; set; }
         public DbSet<Kommentar> Kommentarer { get; set; }
+        public DbSet<Kategorier> Kategori { get; set; }
 
 
         public InfoDbContext() : base("info")

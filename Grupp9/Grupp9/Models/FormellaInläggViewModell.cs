@@ -18,6 +18,13 @@ namespace Grupp9.Models
 
         [Display(Name = "Browse File")]
         public HttpPostedFileBase[] files { get; set; }
+
+        public string KategoriNamn { get; set; }
+
+        public int KategoriId { get; set; }
+
+        public List<Kategorier> allaKategorier { get; set; }
+
     }
 
     public class SkrivKommentarViewModel
