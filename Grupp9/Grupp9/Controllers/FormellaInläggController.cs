@@ -204,7 +204,7 @@ namespace Grupp9.Controllers
            
 
             db.SaveChanges();
-            return View("redigeraInlägg",model);
+            return View(model);
 
         }
 
