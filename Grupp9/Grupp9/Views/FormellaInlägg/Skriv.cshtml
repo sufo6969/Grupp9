@@ -3,6 +3,8 @@
 @{
     /**/
 
+    /**/
+
     ViewBag.Title = "Skriv";
 }
 
@@ -46,13 +48,26 @@
             </div>
         </div>
     </div>
-}
-
-
-@Html.ActionLink("Lägg till Kategori", "LäggTillKategori")
 
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+@*@Html.ActionLink("Lägg till Kategori", "LäggTillKategori")
+
+@foreach (var item in Grupp9.Models.VisaKategorierViewModel)
+{
+
+    <td>
+        @{Html.RenderAction("VisaKategorier", "FormellaInlägg", new { blo = item.Id });
+        }
+
+    </td>
+
+            }
+
+            }*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+            

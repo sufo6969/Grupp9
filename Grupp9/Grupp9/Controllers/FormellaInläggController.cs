@@ -167,7 +167,35 @@ namespace Grupp9.Controllers
 
         }
 
-        
+        public ActionResult VisaKategori(VisaKategorierViewModel model)
+        {
+            var db = new InfoDbContext();
+            var list = new List<LäggTillKategorierViewModel>();
+
+            foreach (var x in db.Kategori)
+            {
+                if (x.BloggInläggId == model.kategoriId)
+                {
+
+                    list.Add(new LäggTillKategorierViewModel
+                    {
+                        KategoriNamn = x.Namn
+
+                    });
+                        
+                        
+                        
+                }
+
+            }
+            model.kategoriLista = list.ToList();
+
+            return View();
+
+        }
+
+
+
 
     }
 }

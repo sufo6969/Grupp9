@@ -28,7 +28,7 @@ namespace Grupp9.Models
     {
 
         public int kategoriId { get; set; }
-        public List <Kategorier> kategoriLista { get; set; }
+        public List <LäggTillKategorierViewModel> kategoriLista { get; set; }
     }
 
     public class LäggTillKategorierViewModel
