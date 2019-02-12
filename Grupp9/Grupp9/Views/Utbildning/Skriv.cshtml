@@ -6,15 +6,14 @@
 
 <h2>Skriv</h2>
 
-@using (Html.BeginForm("Skriv", "Forskning", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Skriv", "Utbildning", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
+    
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.titel, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -22,6 +21,7 @@
             @Html.ValidationMessageFor(model => model.titel, "", new { @class = "text-danger" })
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -29,6 +29,7 @@
             @Html.ValidationMessageFor(model => model.text, "", new { @class = "text-danger" })
         </div>
     </div>
+
 
 
     <div class="form-group">
