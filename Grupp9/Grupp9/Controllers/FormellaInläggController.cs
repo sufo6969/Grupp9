@@ -174,18 +174,18 @@ namespace Grupp9.Controllers
 
             foreach (var x in db.Kategori)
             {
-                if (x.BloggInläggId == model.kategoriId)
+
+
+
+                list.Add(new LäggTillKategorierViewModel
                 {
+                    KategoriNamn = x.Namn
 
-                    list.Add(new LäggTillKategorierViewModel
-                    {
-                        KategoriNamn = x.Namn
-
-                    });
+                });
                         
                         
                         
-                }
+                
 
             }
             model.kategoriLista = list.ToList();
