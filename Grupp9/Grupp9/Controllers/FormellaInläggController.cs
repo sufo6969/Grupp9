@@ -183,7 +183,11 @@ namespace Grupp9.Controllers
             db.Kommentarer.Remove(kommentaren);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            if (Session["type"] != null && Session["resulttype"] != null)
+                return View();
+            else
+                return Redirect(Request.UrlReferrer.ToString());
         }
 
         public ActionResult DeleteFormellaInlägg(int id)
@@ -193,7 +197,11 @@ namespace Grupp9.Controllers
             db.FormellaInläggen.Remove(inlägget);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            // return RedirectToAction("Index");
+            if (Session["type"] != null && Session["resulttype"] != null)
+                return View();
+            else
+                return Redirect(Request.UrlReferrer.ToString());
         }
 
         public bool Vemsomskrivit(string userID)
