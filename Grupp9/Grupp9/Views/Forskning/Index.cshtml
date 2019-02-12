@@ -21,11 +21,12 @@
 
         <div style="float:right; position:relative; top: -43px;">
             @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
-                if (harSkrivit == "True")
-                {
-                    @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", "FormellaInlägg", new { id = item.Id }, null);
-                    <br />
-                    @Html.ActionLink("Redigera", "redigeraInlägg", "FormellaInlägg", new { id = item.Id }, null);
+                var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+                    if (harSkrivit == "True" || adminStatus =="True")
+                    {
+                        @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", "FormellaInlägg", new { id = item.Id }, null);
+                        <br />
+                        @Html.ActionLink("Redigera", "redigeraInlägg", "FormellaInlägg", new { id = item.Id }, null);
 
                 }
             }
