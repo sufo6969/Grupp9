@@ -20,7 +20,6 @@
         </div>
 
         <div style="font-weight: bold">
-            @*@Html.DisplayFor(modelItem => item.UserId)*@
             @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
         </div>
         <div style="float:right; position: relative; top: -43px;">
@@ -47,12 +46,7 @@
             }
         </div>
         <div>
-            @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
             @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
-
-
-            @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
-
         </div>
         <hr />
 
