@@ -1,44 +1,39 @@
-﻿@model Grupp9.Models.ListaKommenterare 
+﻿@model Grupp9.Models.ListaKommenterare
 
-@if (Model.listan != null) {
-<table class="table">
-    <tr>
-        <th>
-            Kommentar
-        </th>
-        <th>
-            Namn
-        </th>
-    </tr>
-
-
-    @foreach (var item in Model.listan)
+<div style="margin-left: -12px;">
+    @if (Model.listan != null)
     {
+        <div style="font-size:large">
+            Kommentarer
+        </div>
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.kommentarText)
-            </td>
-            <td>
+        foreach (var item in Model.listan)
+        {
+
+            <div style="font-weight: bold">
                 @{ var fulltNamn = Html.Action("NamnFrånUserId", "FormellaInlägg", new { userId = item.userID });
                     @fulltNamn
-                    }
-            </td>
-            <td>
-            
+                }
+            </div>
+            <div>
+                @Html.DisplayFor(modelItem => item.kommentarText)
+            </div>
+            <div>
                 @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
                     if (harSkrivit == "True")
                     {
                         @Html.ActionLink("Radera", "Delete", new { IDet = item.kommentarID });
                     }
-                  
+
                 }
-            </td>
-        </tr>
+            </div>
+
+        }
 
     }
-</table>
-}
+
+</div>
+
 
 
 

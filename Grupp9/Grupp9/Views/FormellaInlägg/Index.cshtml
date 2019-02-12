@@ -10,58 +10,52 @@
 <p>
     @Html.ActionLink("Skriv nytt inlägg", "Skriv")
 </p>
-<table class="table">
-    <tr>
-        <th>
-           Namn
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Titel)
-        </th>
-        <th >
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-    </tr>
+<div style="margin-left: auto;">
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.UserId)*@
-                @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
+        <div style="font-size: large">
+            @Html.DisplayFor(modelItem => item.Titel)
+        </div>
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titel)
-                @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
-                    if (harSkrivit == "True")
-                    {
-                        @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", new { id = item.Id });
-                        <br />
-                        @Html.ActionLink("Redigera", "redigeraInlägg", new { id = item.Id });
+        <div style="font-weight: bold">
+            @*@Html.DisplayFor(modelItem => item.UserId)*@
+            @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
+        </div>
+        <div style="float:right; position: relative; top: -43px;">
+            @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
+                if (harSkrivit == "True")
+                {
+                    @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", new { id = item.Id });
+                    <br />
+                    @Html.ActionLink("Redigera", "redigeraInlägg", new { id = item.Id });
 
-                    }
                 }
-            </td>
-            <td>
-                <div >
-                    @Html.DisplayFor(modelItem => item.Text)
-                    @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
-                    }
-                
-                </div>
-            </td>
-            <td>
+            }
+        </div>
+        <br />
+        <hr />
+        <div>
+            @Html.DisplayFor(modelItem => item.Text)
+            @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
+            }
+        </div>
+        <hr />
+        <div>
+            @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
+            }
+        </div>
+        <div>
+            @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
+            @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
 
-                @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
-                @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
-                </td>
-                <td >
-                @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
-                }
-                    @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
-            </td>
-        </tr>
+
+            @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
+
+        </div>
+        <hr />
+
     }
-</table>
+</div>
+
