@@ -1,0 +1,46 @@
+﻿@model Grupp9.Models.ListaKommenterare
+
+@if (Model.listan != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Kommentar
+            </th>
+            <th>
+                Namn
+            </th>
+        </tr>
+
+        @foreach (var item in Model.listan)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kommentarText)
+                </td>
+                <td>
+                    @{ var fulltNamn = Html.Action("NamnFrånUserId", "FormellaInlägg", new { userId = item.userID });
+                        @fulltNamn
+                    }
+                </td>
+                <td>
+
+                    @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
+                        if (harSkrivit == "True")
+                        {
+                            @Html.ActionLink("Radera", "Delete", "FormellaInlägg", new { IDet = item.kommentarID }, null);
+                        }
+
+                    }
+                </td>
+            </tr>
+
+        }
+    </table>
+}
+
+
+
+
+

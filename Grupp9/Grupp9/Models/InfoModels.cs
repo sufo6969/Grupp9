@@ -22,6 +22,7 @@ namespace Grupp9.Models
         public string UserId { get; set; }
         public string Titel { get; set; }
         public string Text { get; set; }
+        public string TypAvInlägg { get; set; }
     }
 
     public class Kategorier

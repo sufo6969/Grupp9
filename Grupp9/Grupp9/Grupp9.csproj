@@ -262,9 +262,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FormellaInläggController.cs" />
+    <Compile Include="Controllers\ForskningController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\UtbildningController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -332,6 +334,14 @@
     <Content Include="Views\FormellaInlägg\Namn.cshtml" />
     <Content Include="Views\FormellaInlägg\FilLista.cshtml" />
     <Content Include="Views\FormellaInlägg\redigeraInlägg.cshtml" />
+    <Content Include="Views\Forskning\Index.cshtml" />
+    <Content Include="Views\Forskning\Skriv.cshtml" />
+    <Content Include="Views\Forskning\SkrivKommentar.cshtml" />
+    <Content Include="Views\Forskning\LäsKommentar.cshtml" />
+    <Content Include="Views\Utbildning\Index.cshtml" />
+    <Content Include="Views\Utbildning\Skriv.cshtml" />
+    <Content Include="Views\Utbildning\SkrivKommentar.cshtml" />
+    <Content Include="Views\Utbildning\LäsKommentar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
