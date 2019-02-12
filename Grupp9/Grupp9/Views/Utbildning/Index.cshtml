@@ -9,27 +9,18 @@
 <p>
     @Html.ActionLink("Skriv nytt inlägg", "Skriv")
 </p>
+<div style="margin-left: auto">
 
-<table class="table">
-    <tr>
-        <th>
-            Namn
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-       
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
+    @foreach (var item in Model)
+    {
+        <div style="font-size:large">
+            @Html.DisplayFor(modelItem => item.Titel)
+        </div>
+        <div>
             @Html.Action("Namn", "Utbildning", new { userId = item.UserId })
-           
+        </div>
+        <div style="float:right; position:relative; top: -43px;">
             @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
                 if (harSkrivit == "True")
                 {
@@ -39,31 +30,29 @@
 
                 }
             }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titel)
-        </td>
-        <td>
+        </div>
+        <br />
+        <hr />
+        <div>
             @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        
+        </div>
 
-        <td>
-            @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
-            @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
-        </td>
-        <td>
+
+        <div>
             @{Html.RenderAction("LäsKommentar", "Utbildning", new { bloggId = item.Id });
             }
-            @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
-        </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+        </div>
 
-</table>
+        <div>
+
+            @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
+        </div>
+        <hr/>
+
+        <div>
+            @Html.ActionLink("Radera", "Delete", new { id = item.Id })
+        </div>
+    }
+
+</div>
