@@ -2,21 +2,17 @@
 
 
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
 @if (Model.listan != null) {
 <table class="table">
-    @*<tr>
+    <tr>
         <th>
-            Kommentar
+            Kommentarer
         </th>
-        <th>
-            Id
-        </th>
-        <th></th>
-    </tr>*@
+    </tr>
 
     @foreach (var item in Model.listan)
     {
