@@ -20,8 +20,8 @@ namespace Grupp9.Controllers
         {
             var entities = new InfoDbContext();
             var currentUser = User.Identity.GetUserId();
-
-            return View(entities.FormellaInläggen.ToList());
+          
+            return View(entities.FormellaInläggen.Where(i => i.TypAvInlägg == "Formell").ToList());
         }
 
         public string Namn(string userid)
@@ -43,7 +43,8 @@ namespace Grupp9.Controllers
                 {
                     UserId = currentUser,
                     Titel = model.titel,
-                    Text = model.text
+                    Text = model.text,
+                    TypAvInlägg = "Formell"
                 };
 
                 db.FormellaInläggen.Add(nyttInlägg);
