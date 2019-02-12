@@ -28,33 +28,35 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.UserId)*@
-                @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
+    <tr>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.UserId)*@
+            @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titel)
-            </td>
-            <td>
-                <div >
-                    @Html.DisplayFor(modelItem => item.Text)
-                    @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
-                    }
-                
-                </div>
-            </td>
-            <td>
-
-                @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
-                @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
-                </td>
-                <td >
-                @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titel)
+        </td>
+        <td>
+            <div>
+                @Html.DisplayFor(modelItem => item.Text)
+                @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
                 }
-                    @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
-            </td>
-        </tr>
+
+            </div>
+        </td>
+        <td>
+
+            @*@Html.Action("SkrivKommentar", "SkrivKommentar", new { blogId = item.Id })*@
+            @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
+        </td>
+
+      
+        <td>
+            @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
+            }
+            @*@{Html.RenderPartial("LäsKommentar",  new Grupp9.Models.ListaKommenterare() { bloggId = item.Id });}*@
+        </td>
+    </tr>
     }
 </table>

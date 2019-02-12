@@ -1,0 +1,33 @@
+﻿@model Grupp9.Models.LäggTillKategorierViewModel
+
+@{
+              
+
+                ViewBag.Title = "LäggTillKategori";
+}
+
+<h2> Lägg till en ny kategori </h2>
+<hr />
+@using (Html.BeginForm("LäggTillKategori", "FormellaInlägg", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.KategoriNamn, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.KategoriNamn, new { htmlAttributes = new { @class = "form-control", @cols = "", @rows = 6 } })
+                @Html.ValidationMessageFor(model => model.KategoriNamn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lägg till kategori" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+

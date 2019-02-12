@@ -144,7 +144,7 @@ namespace Grupp9.Controllers
             return View(model);
         }
 
-        public ActionResult LäggTillKategori (FormellaInläggViewModell model)
+        public ActionResult LäggTillKategori (LäggTillKategorierViewModel model)
         {
             if (model.KategoriNamn != null)
             {

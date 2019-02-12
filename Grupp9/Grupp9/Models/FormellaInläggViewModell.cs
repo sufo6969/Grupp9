@@ -19,6 +19,21 @@ namespace Grupp9.Models
         [Display(Name = "Browse File")]
         public HttpPostedFileBase[] files { get; set; }
 
+       
+
+    }
+
+    public class VisaKategorierViewModel
+
+    {
+
+        public int kategoriId { get; set; }
+        public List <Kategorier> kategoriLista { get; set; }
+    }
+
+    public class LäggTillKategorierViewModel
+
+    {
         public string KategoriNamn { get; set; }
 
         public int KategoriId { get; set; }
@@ -26,6 +41,7 @@ namespace Grupp9.Models
         public List<Kategorier> allaKategorier { get; set; }
 
     }
+    
 
     public class SkrivKommentarViewModel
     {
