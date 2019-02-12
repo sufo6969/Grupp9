@@ -27,7 +27,8 @@
                 <td>
 
                     @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
-                        if (harSkrivit == "True")
+                        var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+                        if (harSkrivit == "True" || adminStatus == "True")
                         {
                             @Html.ActionLink("Radera", "Delete", "FormellaInlägg", new { IDet = item.kommentarID }, null);
                         }

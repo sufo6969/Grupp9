@@ -31,7 +31,8 @@
             @Html.Action("Namn", "Utbildning", new { userId = item.UserId })
            
             @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
-                if (harSkrivit == "True")
+                var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+                if (harSkrivit == "True" || adminStatus == "True")
                 {
                     @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", "FormellaInlägg", new { id = item.Id }, null);
                     <br />
