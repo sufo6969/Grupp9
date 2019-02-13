@@ -334,11 +334,12 @@
     <Content Include="Views\FormellaInlägg\Namn.cshtml" />
     <Content Include="Views\FormellaInlägg\FilLista.cshtml" />
     <Content Include="Views\FormellaInlägg\redigeraInlägg.cshtml" />
+    <Content Include="Views\Mötes\Create.cshtml" />
+    <Content Include="Views\Mötes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filer\" />
-    <Folder Include="Views\Mötes\" />
     <Folder Include="Views\Profil\" />
   </ItemGroup>
   <ItemGroup>

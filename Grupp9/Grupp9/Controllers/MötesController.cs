@@ -11,20 +11,13 @@ namespace Grupp9.Controllers
     public class MötesController : Controller
     {
         // GET: Mötes
-        public ActionResult Index(MötenViewModel model)
-            
+        public ActionResult Index()
         {
             var db = new InfoDbContext();
             var currentUser = User.Identity.GetUserId();
-            
 
-
-            return View();
+            return View(db.Möte.ToList());
         }
-
-      
-
-        // GET: Mötes/Create
         public ActionResult Create()
         {
             return View();
@@ -34,23 +27,20 @@ namespace Grupp9.Controllers
         [HttpPost]
         public ActionResult Create(MötenViewModel model)
         {
-
             var db = new InfoDbContext();
             var currentUser = User.Identity.GetUserId();
 
             var nyttMöte = new Möten
             {
                 UserId = currentUser,
-                MötesBeskrivning = model.beskrivning,
-                MöteId = model.möteId
+                MötesBeskrivning = model.Beskrivning,
+                MöteId = model.MöteId
             };
 
             db.Möte.Add(nyttMöte);
             db.SaveChanges();
 
-        
             return RedirectToAction("Index");
-            
         }
 
         // GET: Mötes/Edit/5

@@ -58,10 +58,14 @@ namespace Grupp9.Models
         [Key]
         public int MöteId { get; set; }
         public string UserId { get; set; }
-        public string MötesBeskrivning { get; set; }      
+        [Required]
+        public string MötesBeskrivning { get; set; }
+        public bool AccepteratMöte { get; set; }
+
+        public bool InbjudenTillMöte { get; set; }
     }
 
-    public class Datum
+        public class Datum
     {
         [Key]
         public int DatumId { get; set; }
