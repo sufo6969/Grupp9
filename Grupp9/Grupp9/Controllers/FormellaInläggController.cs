@@ -87,6 +87,21 @@ namespace Grupp9.Controllers
             return View(model);
         }
 
+        public string Kategorinamn (int Bloggid)
+        {
+            var db = new InfoDbContext();
+            var sak = db.BlogginläggsKategorier.FirstOrDefault(i => i.BloggId == Bloggid);
+            var klar = " ";
+            if(sak!= null)
+            {
+                var katId = sak.KategoriId;
+                var kat = db.Kategori.FirstOrDefault(i => i.Id == katId);
+                klar = kat.Namn;
+            }
+            
+            return (klar);
+        }
+
         public ActionResult SkrivKommentar(SkrivKommentarViewModel model)
         {
             if (model.kommentarText != null)
