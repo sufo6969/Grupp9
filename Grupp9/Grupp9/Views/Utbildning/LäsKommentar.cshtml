@@ -1,0 +1,37 @@
+﻿@model Grupp9.Models.ListaKommenterare
+
+
+<div style="margin-left: -12px;">
+    @if (Model.listan != null)
+    {
+      <div style="font-size: large">Kommentar</div>
+
+        foreach (var item in Model.listan)
+        {
+      <div style="font-weight: bold">
+          @{ var fulltNamn = Html.Action("NamnFrånUserId", "FormellaInlägg", new { userId = item.userID });
+              @fulltNamn
+          }
+      </div>
+      <div>@Html.DisplayFor(modelItem => item.kommentarText)</div>
+
+                    @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.userID }).ToString();
+                        var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
+                        if (harSkrivit == "True" || adminStatus == "True")
+                        {
+                            @Html.ActionLink("Radera", "Delete", "FormellaInlägg", new { IDet = item.kommentarID }, null);
+                        }
+
+          }
+
+      </div>
+             
+        }
+
+    }
+</div>
+
+
+
+
+

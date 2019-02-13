@@ -1,56 +1,55 @@
 ﻿@model IEnumerable<Grupp9.Models.FormellaInlägg>
-@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Formella inlägg</h2>
+
 
 <p>
     @Html.ActionLink("Skriv nytt inlägg", "Skriv")
 </p>
+<div style="margin-left: auto">
 
-<div style="margin-left: auto;">
 
     @foreach (var item in Model)
     {
-        <div style="font-size: large">
+        <div style="font-size:large">
             @Html.DisplayFor(modelItem => item.Titel)
         </div>
+        <div style=" font-weight: bold">     @Html.Action("Namn", "Forskning", new { userId = item.UserId })</div>
 
-        <div style="font-weight: bold">
-            @Html.Action("Namn", "FormellaInlägg", new { userId = item.UserId })
-        </div>
-        <div style="float:right; position: relative; top: -43px;">
+        <div style="float:right; position:relative; top: -43px;">
             @{var harSkrivit = Html.Action("VemSomSkrivit", "FormellaInlägg", new { userID = item.UserId }).ToString();
                 var adminStatus = Html.Action("ÄrAdmin", "Profil").ToString();
-                if (harSkrivit == "True" || adminStatus == "True")
-                {
-                    @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", new { id = item.Id });
-                    <br />
-                    @Html.ActionLink("Redigera", "redigeraInlägg", new { id = item.Id });
+                    if (harSkrivit == "True" || adminStatus =="True")
+                    {
+                        @Html.ActionLink("Ta Bort", "DeleteFormellaInlägg", "FormellaInlägg", new { id = item.Id }, null);
+                        <br />
+                        @Html.ActionLink("Redigera", "redigeraInlägg", "FormellaInlägg", new { id = item.Id }, null);
 
                 }
             }
         </div>
         <br />
         <hr />
+
         <div>
+
             @Html.DisplayFor(modelItem => item.Text)
-            @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
-            }
         </div>
+
         <hr />
         <div>
-            @{Html.RenderAction("LäsKommentar", "FormellaInlägg", new { bloggId = item.Id });
+            @{Html.RenderAction("LäsKommentar", "Forskning", new { bloggId = item.Id });
             }
         </div>
         <div>
             @{Html.RenderPartial("SkrivKommentar", new Grupp9.Models.SkrivKommentarViewModel() { bloggId = item.Id });}
         </div>
+
         <hr />
 
     }
-</div>
 
+</div>
