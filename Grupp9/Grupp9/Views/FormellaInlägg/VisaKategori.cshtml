@@ -17,10 +17,11 @@
             @Html.DisplayFor(modelItem => item.KategoriId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DropDownListFor(modelItem => item.KategoriNamn,
+                      new SelectList(item.KategoriNamn), "Välj")
+
         </td>
+
     </tr>
 </table>
 }

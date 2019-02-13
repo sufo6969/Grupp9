@@ -179,7 +179,9 @@ namespace Grupp9.Controllers
 
                 list.Add(new LäggTillKategorierViewModel
                 {
-                    KategoriNamn = x.Namn
+                    KategoriNamn = x.Namn,
+                    KategoriId= x.Id
+                    
 
                 });
                         
@@ -190,7 +192,7 @@ namespace Grupp9.Controllers
             }
             model.kategoriLista = list.ToList();
 
-            return View();
+            return View(model);
 
         }
 
