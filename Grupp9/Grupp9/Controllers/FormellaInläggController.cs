@@ -36,7 +36,8 @@ namespace Grupp9.Controllers
         {
             var db = new InfoDbContext();
             var list = db.Kategori.ToList();
-            model.AllaKategorier = list;
+            model.AllaKategorier = new SelectList(db.Kategori, "Id", "Namn", 1);
+
             if (model.text != null && model.titel != null)
             {
                 
@@ -52,7 +53,7 @@ namespace Grupp9.Controllers
                 db.SaveChanges();
 
                 var bloggId = nyttInlägg.Id;
-               
+
                 
 
                 if (files != null)
@@ -74,10 +75,10 @@ namespace Grupp9.Controllers
                     }
                 }
 
-              /*  db.BlogginläggsKategorier.Add( new BlogginläggsKategori{
+                db.BlogginläggsKategorier.Add( new BlogginläggsKategori{
                     BloggId = bloggId,
-                    KategoriId = model.AllaKategorier
-                });*/
+                    KategoriId = model.ValdKategori
+                });
 
                 db.SaveChanges();
                 return RedirectToAction("Index");

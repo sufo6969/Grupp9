@@ -42,8 +42,8 @@
     </div>
 
 
-    @Html.DropDownListFor(m => m.AllaKategorier,
-    new SelectList(Model.AllaKategorier, "Id", "Namn"), " ")
+    @Html.DropDownListFor(m => m.ValdKategori,
+    Model.AllaKategorier, "Välj")
 
 
     <div class="form-group">
