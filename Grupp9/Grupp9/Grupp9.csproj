@@ -344,6 +344,8 @@
     <Content Include="Views\Utbildning\Skriv.cshtml" />
     <Content Include="Views\Utbildning\SkrivKommentar.cshtml" />
     <Content Include="Views\Utbildning\LäsKommentar.cshtml" />
+    <Content Include="Views\FormellaInlägg\LäggTillKategori.cshtml" />
+    <Content Include="Views\FormellaInlägg\VisaKategori.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

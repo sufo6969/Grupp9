@@ -35,9 +35,13 @@ namespace Grupp9.Controllers
         [Authorize]
         public ActionResult Skriv(FormellaInläggViewModell model, HttpPostedFileBase[] files)
         {
+            var db = new InfoDbContext();
+            var list = db.Kategori.ToList();
+            model.AllaKategorier = new SelectList(db.Kategori, "Id", "Namn", 1);
+
             if (model.text != null && model.titel != null)
             {
-                var db = new InfoDbContext();
+                
                 var currentUser = User.Identity.GetUserId();
                 var nyttInlägg = new FormellaInlägg
                 {
@@ -51,6 +55,8 @@ namespace Grupp9.Controllers
                 db.SaveChanges();
 
                 var bloggId = nyttInlägg.Id;
+
+                
 
                 if (files != null)
                 {
@@ -71,11 +77,31 @@ namespace Grupp9.Controllers
                     }
                 }
 
+                db.BlogginläggsKategorier.Add( new BlogginläggsKategori{
+                    BloggId = bloggId,
+                    KategoriId = model.ValdKategori
+                });
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(model);
+        }
+
+        public string Kategorinamn (int Bloggid)
+        {
+            var db = new InfoDbContext();
+            var sak = db.BlogginläggsKategorier.FirstOrDefault(i => i.BloggId == Bloggid);
+            var klar = " ";
+            if(sak!= null)
+            {
+                var katId = sak.KategoriId;
+                var kat = db.Kategori.FirstOrDefault(i => i.Id == katId);
+                klar = kat.Namn;
+            }
+            
+            return (klar);
         }
 
         public ActionResult SkrivKommentar(SkrivKommentarViewModel model)
@@ -149,7 +175,7 @@ namespace Grupp9.Controllers
             return View(model);
         }
 
-        public ActionResult LäggTillKategori (FormellaInläggViewModell model)
+        public ActionResult LäggTillKategori (LäggTillKategorierViewModel model)
         {
             if (model.KategoriNamn != null)
             {
@@ -158,7 +184,7 @@ namespace Grupp9.Controllers
                 var currentUser = User.Identity.GetUserId();
                 db.Kategori.Add(new Kategorier
                 {
-                    UserId = currentUser,
+                    //UserId = currentUser,
                     Namn = model.KategoriNamn,
                     Id = model.KategoriId,
                    
@@ -167,12 +193,22 @@ namespace Grupp9.Controllers
                 db.SaveChanges();
                
             }
-            return RedirectToAction("Skriv");
+            return View();
 
 
         }
 
-        
+        public ActionResult VisaKategori()
+        {
+            var db = new InfoDbContext();
+            var list = db.Kategori.ToList();
+            var model = new ListaKategorierViewModel { AllaKategorier = list };
+
+            return View(model);
+        }
+
+
+
 
         public ActionResult Delete(int IDet)
         {

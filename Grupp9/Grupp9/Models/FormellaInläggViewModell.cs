@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Grupp9.Models
 {
@@ -19,13 +20,34 @@ namespace Grupp9.Models
         [Display(Name = "Browse File")]
         public HttpPostedFileBase[] files { get; set; }
 
+        public int ValdKategori { get; set; }
+        public SelectList AllaKategorier { get; set; }
+        //public List<Kategorier> AllaKategorier { get; set; }
+        
+    }
+
+    public class VisaKategorierViewModel
+
+    {
+        //public int kategoriId { get; set; }
+        public List <LäggTillKategorierViewModel> kategoriLista { get; set; }
+    }
+    public class ListaKategorierViewModel
+    {
+        public List<Kategorier> AllaKategorier { get; set; }
+    }
+
+    public class LäggTillKategorierViewModel
+
+    {
         public string KategoriNamn { get; set; }
 
         public int KategoriId { get; set; }
 
-        public List<Kategorier> allaKategorier { get; set; }
+      //  public List<Kategorier> allaKategorier { get; set; }
 
     }
+    
 
     public class SkrivKommentarViewModel
     {

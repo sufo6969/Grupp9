@@ -3,6 +3,8 @@
 @{
     /**/
 
+    /**/
+
     ViewBag.Title = "Skriv";
 }
 
@@ -12,70 +14,64 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr /><div class="form-group">
-            @Html.LabelFor(model => model.titel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.titel, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.titel, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.text, new { htmlAttributes = new { @class = "form-control", @cols = "", @rows = 6 } })
-                @Html.ValidationMessageFor(model => model.text, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
-                @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <hr /><div class="form-group">
+        @Html.LabelFor(model => model.titel, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.titel, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.titel, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.text, new { htmlAttributes = new { @class = "form-control", @cols = "", @rows = 6 } })
+            @Html.ValidationMessageFor(model => model.text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @Html.DropDownListFor(m => m.ValdKategori,
+    Model.AllaKategorier, "Välj")
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+
 }
-<h2> Lägg till en ny kategori </h2>
-<hr />
-@using (Html.BeginForm("LäggTillKategori", "FormellaInlägg", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@Html.ActionLink("Lägg till Kategori", "LäggTillKategori")
+
+@*@foreach (var item in Grupp9.Models.VisaKategorierViewModel)
 {
-    <div class="form-horizontal">
-        <div class="form-group">
 
-            @Html.LabelFor(model => model.KategoriNamn, htmlAttributes: new { @class = "control-label col-md-2" })
+    <td>
+        @{Html.RenderAction("VisaKategorier", "FormellaInlägg", new { blo = item.Id });
+        }
 
+    </td>
 
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.KategoriNamn, new { htmlAttributes = new { @class = "form-control", @cols = "", @rows = 6 } })
-                @Html.ValidationMessageFor(model => model.KategoriNamn, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            }
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lägg till kategori" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+            }*@
 
-}
-
-
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+            

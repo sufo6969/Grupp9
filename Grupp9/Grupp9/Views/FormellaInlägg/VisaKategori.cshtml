@@ -1,0 +1,6 @@
+﻿@model Grupp9.Models.ListaKategorierViewModel
+
+@Html.DropDownListFor(m => m.AllaKategorier, 
+    new SelectList(Model.AllaKategorier, "Id", "Namn"), " ")
+
+
