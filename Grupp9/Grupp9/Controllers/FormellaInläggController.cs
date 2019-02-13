@@ -178,7 +178,6 @@ namespace Grupp9.Controllers
             var db = new InfoDbContext();
             var kommentaren = db.Kommentarer.FirstOrDefault(k => k.Id == IDet);
 
-
             db.Kommentarer.Remove(kommentaren);
             db.SaveChanges();
 
@@ -234,17 +233,6 @@ namespace Grupp9.Controllers
             model.text = inlägg.Text;
            
             return View(model);
-
-
         }
-
-       
-      
-        
-                
-            
-
-   
-        
     }
 }
