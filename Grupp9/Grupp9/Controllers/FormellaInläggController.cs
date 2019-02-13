@@ -34,9 +34,12 @@ namespace Grupp9.Controllers
         [Authorize]
         public ActionResult Skriv(FormellaInläggViewModell model, HttpPostedFileBase[] files)
         {
+            var db = new InfoDbContext();
+            var list = db.Kategori.ToList();
+            model.AllaKategorier = list;
             if (model.text != null && model.titel != null)
             {
-                var db = new InfoDbContext();
+                
                 var currentUser = User.Identity.GetUserId();
                 var nyttInlägg = new FormellaInlägg
                 {
@@ -49,6 +52,8 @@ namespace Grupp9.Controllers
                 db.SaveChanges();
 
                 var bloggId = nyttInlägg.Id;
+               
+                
 
                 if (files != null)
                 {
@@ -69,11 +74,16 @@ namespace Grupp9.Controllers
                     }
                 }
 
+              /*  db.BlogginläggsKategorier.Add( new BlogginläggsKategori{
+                    BloggId = bloggId,
+                    KategoriId = model.AllaKategorier
+                });*/
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(model);
         }
 
         public ActionResult SkrivKommentar(SkrivKommentarViewModel model)
@@ -153,7 +163,7 @@ namespace Grupp9.Controllers
                 var currentUser = User.Identity.GetUserId();
                 db.Kategori.Add(new Kategorier
                 {
-                    UserId = currentUser,
+                    //UserId = currentUser,
                     Namn = model.KategoriNamn,
                     Id = model.KategoriId,
                    
@@ -167,33 +177,13 @@ namespace Grupp9.Controllers
 
         }
 
-        public ActionResult VisaKategori(VisaKategorierViewModel model)
+        public ActionResult VisaKategori()
         {
             var db = new InfoDbContext();
-            var list = new List<LäggTillKategorierViewModel>();
-
-            foreach (var x in db.Kategori)
-            {
-
-
-
-                list.Add(new LäggTillKategorierViewModel
-                {
-                    KategoriNamn = x.Namn,
-                    KategoriId= x.Id
-                    
-
-                });
-                        
-                        
-                        
-                
-
-            }
-            model.kategoriLista = list.ToList();
+            var list = db.Kategori.ToList();
+            var model = new ListaKategorierViewModel { AllaKategorier = list };
 
             return View(model);
-
         }
 
 

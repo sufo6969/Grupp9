@@ -1,29 +1,6 @@
-﻿@model Grupp9.Models.VisaKategorierViewModel
+﻿@model Grupp9.Models.ListaKategorierViewModel
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+@Html.DropDownListFor(m => m.AllaKategorier, 
+    new SelectList(Model.AllaKategorier, "Id", "Namn"), " ")
 
-
-@foreach (var item in Model.kategoriLista)
-{
-
-<table>
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.KategoriNamn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KategoriId)
-        </td>
-        <td>
-            @Html.DropDownListFor(modelItem => item.KategoriNamn,
-                      new SelectList(item.KategoriNamn), "Välj")
-
-        </td>
-
-    </tr>
-</table>
-}
-    
 
