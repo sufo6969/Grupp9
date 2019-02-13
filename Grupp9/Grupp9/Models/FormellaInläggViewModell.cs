@@ -74,5 +74,6 @@ namespace Grupp9.Models
         public string titel { get; set; }
 
     }
+
 }
 
