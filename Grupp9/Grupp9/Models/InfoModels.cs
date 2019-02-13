@@ -53,14 +53,32 @@ namespace Grupp9.Models
         public bool Admin { get; set; }
     }
 
-    public class InfoDbContext : DbContext
+    public class Möten
+    {
+        [Key]
+        public int MöteId { get; set; }
+        public string UserId { get; set; }
+        public string MötesBeskrivning { get; set; }      
+    }
+
+    public class Datum
+    {
+        [Key]
+        public int DatumId { get; set; }
+        public DateTime FörslagDatum { get; set; }
+        public DateTime ValtDatum { get; set; }
+        public int MöteId {get; set;}
+    }
+
+        public class InfoDbContext : DbContext
     {
         public DbSet<Fil> Filer { get; set; }
         public DbSet<FormellaInlägg> FormellaInläggen { get; set; }
         public DbSet<Profil> Profiler { get; set; }
         public DbSet<Kommentar> Kommentarer { get; set; }
         public DbSet<Kategorier> Kategori { get; set; }
-
+        public DbSet<Möten> Möte { get; set; }
+        public DbSet<Datum> Datumen{ get; set; }
 
         public InfoDbContext() : base("info")
         {
