@@ -1,0 +1,28 @@
+﻿@model Grupp9.Models.FormellaInläggViewModell
+
+@{
+    ViewBag.Title = "VäljKategori";
+}
+
+<h2>Välj en kategori</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            @Html.DropDownListFor(m => m.ValdKategori,
+                    Model.AllaKategorier, "Välj")
+        </div>
+        
+
+        <div class=" col-lg-3">
+            <input type="submit" value="Filtrera" class="btn btn-default" />
+        </div>
+
+
+    </div>
+    
+</div>
+}
