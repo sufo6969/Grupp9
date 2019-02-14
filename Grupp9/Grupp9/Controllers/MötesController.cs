@@ -23,6 +23,11 @@ namespace Grupp9.Controllers
             return View();
         }
 
+        public ActionResult Datum()
+        {
+            return View();
+        }
+
         // POST: Mötes/Create
         [HttpPost]
         public ActionResult Create(MötenViewModel model)
