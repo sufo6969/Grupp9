@@ -3,21 +3,22 @@
 @{
     ViewBag.Title = "VäljKategori";
 }
-
-<h2>Välj en kategori</h2>
+<div class="text-center" style="padding-bottom:5em;">
+    <h2 style=" border-style:solid;border-color:dodgerblue;">Välj en kategori</h2>
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-3">
+    <div class="row" style="padding-left:20em">
+        <div class="col-lg-3" >
             @Html.DropDownListFor(m => m.ValdKategori,
                     Model.AllaKategorier, "Välj")
         </div>
         
 
-        <div class=" col-lg-3">
+        <div class=" col-lg-3 media-bottom">
             <input type="submit" value="Filtrera" class="btn btn-default" />
         </div>
 
