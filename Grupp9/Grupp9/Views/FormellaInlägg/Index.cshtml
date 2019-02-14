@@ -40,6 +40,8 @@
             @Html.DisplayFor(modelItem => item.Text)
             @{Html.RenderAction("FilLista", "FormellaInlägg", new { BloggInläggId = item.Id });
             }
+            <br />
+            Kategori: @Html.Action("Kategorinamn", "FormellaInlägg", new { Bloggid = item.Id })
         </div>
         <hr />
         <div>
