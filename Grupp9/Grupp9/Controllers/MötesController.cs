@@ -34,7 +34,8 @@ namespace Grupp9.Controllers
             {
                 UserId = currentUser,
                 MötesBeskrivning = model.Beskrivning,
-                MöteId = model.MöteId
+                MöteId = model.MöteId,
+                InbjudenEmail = model.InbjudenEmail
             };
 
             db.Möte.Add(nyttMöte);
@@ -44,49 +45,23 @@ namespace Grupp9.Controllers
         }
 
         // GET: Mötes/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //public ActionResult BjudIn(MötenViewModel model)
+        //{
+        //    var db = new InfoDbContext();
+         
 
-        // POST: Mötes/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //    var nyInbjudan = new Möten
+        //    {
+                
+        //        InbjudenEmail = model.InbjudenEmail
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //    };
 
-        // GET: Mötes/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //    db.Möte.Add(nyInbjudan);
+        //    db.SaveChanges();
 
-        // POST: Mötes/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        //    return View();
+        //}
 
         
     }

@@ -348,6 +348,7 @@
     <Content Include="Views\FormellaInlägg\VisaKategori.cshtml" />
     <Content Include="Views\Mötes\Create.cshtml" />
     <Content Include="Views\Mötes\Index.cshtml" />
+    <Content Include="Views\Mötes\BjudIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,6 +33,8 @@ namespace Grupp9.Models
 
     }
 
+  
+
     public class BlogginläggsKategori
     {
         [Key]
@@ -68,8 +70,8 @@ namespace Grupp9.Models
         [Required]
         public string MötesBeskrivning { get; set; }
         public bool AccepteratMöte { get; set; }
-
         public bool InbjudenTillMöte { get; set; }
+        public string InbjudenEmail { get; set; }
     }
 
         public class Datum
