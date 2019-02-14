@@ -97,5 +97,11 @@ namespace Grupp9.Models
 
     }
 
+    public class FiltreraKategoriViewModel
+    {
+        public int KategoriId { get; set; }
+        public IEnumerable<SelectListItem> KategoriLista { get; set; }
+    }
+
 }
 

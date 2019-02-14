@@ -36,7 +36,7 @@ namespace Grupp9.Controllers
         public ActionResult Skriv(FormellaInläggViewModell model, HttpPostedFileBase[] files)
         {
             var db = new InfoDbContext();
-            var list = db.Kategori.ToList();
+           // var list = db.Kategori.ToList();
             model.AllaKategorier = new SelectList(db.Kategori, "Id", "Namn", 1);
 
             if (model.text != null && model.titel != null)
@@ -102,6 +102,33 @@ namespace Grupp9.Controllers
             }
             
             return (klar);
+        }
+
+        public ActionResult VäljKategori(FormellaInläggViewModell model)
+        {
+            var db = new InfoDbContext();
+            model.AllaKategorier = new SelectList(db.Kategori, "Id", "Namn", 1);
+            var valdKat = model.ValdKategori;
+            if (valdKat > 0)
+            {
+                return RedirectToAction("FiltreraKategori", new { kategoriId = valdKat });
+            }
+            return View(model);
+        }
+        public ActionResult FiltreraKategori (int kategoriId)
+        {
+            var db = new InfoDbContext();
+
+            var inläggMedKat = db.BlogginläggsKategorier.Where(i => i.KategoriId == kategoriId);
+            var list = new List<int>();
+            foreach(var i in inläggMedKat)
+            {
+                list.Add(i.BloggId);
+            }
+
+            var filtrerad = db.FormellaInläggen.Where(i => list.Contains(i.Id));
+
+            return View(filtrerad.ToList());
         }
 
         public ActionResult SkrivKommentar(SkrivKommentarViewModel model)

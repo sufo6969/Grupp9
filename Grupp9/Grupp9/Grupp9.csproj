@@ -346,6 +346,8 @@
     <Content Include="Views\Utbildning\LäsKommentar.cshtml" />
     <Content Include="Views\FormellaInlägg\LäggTillKategori.cshtml" />
     <Content Include="Views\FormellaInlägg\VisaKategori.cshtml" />
+    <Content Include="Views\FormellaInlägg\VäljKategori.cshtml" />
+    <Content Include="Views\FormellaInlägg\FiltreraKategori.cshtml" />
     <Content Include="Views\Mötes\Create.cshtml" />
     <Content Include="Views\Mötes\Index.cshtml" />
     <Content Include="Views\Mötes\BjudIn.cshtml" />
