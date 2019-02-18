@@ -218,6 +218,7 @@ namespace Grupp9.Controllers
                 });
                
                 db.SaveChanges();
+                return RedirectToAction("Skriv");
                
             }
             return View();
