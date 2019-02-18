@@ -42,10 +42,11 @@ namespace Grupp9.Controllers
                 MöteId = model.MöteId,
                 
             };
-
+           
             var nyttDatum = new Datum
             {
-                ValtDatum = model.MötesTid,
+                FörslagDatum = model.MötesTid.Value,
+                ValtDatum = model.MötesTid.Value,
                 MöteId = model.MöteId
             };
             db.Datumen.Add(nyttDatum);

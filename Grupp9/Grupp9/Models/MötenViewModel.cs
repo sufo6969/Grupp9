@@ -15,7 +15,9 @@ namespace Grupp9.Models
         public string UserId { get; set; }
         public bool AccepteratMöte { get; set; }
         public bool InbjudenTillMöte { get; set; }
-        public DateTime MötesTid { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime? MötesTid { get; set; }
     }
 
 
@@ -25,7 +27,8 @@ namespace Grupp9.Models
         public int DatumId { get; set; }
         [Required]
         public DateTime FörslagDatum { get; set; }
-        public DateTime ValtDatum { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? ValtDatum { get; set; }
         public int MöteId { get; set; }
 
 

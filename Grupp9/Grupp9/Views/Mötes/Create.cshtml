@@ -9,35 +9,50 @@
 }
 <h2>Skapa ett möte</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Mötes", FormMethod.Post))
 {
     <h4>Möten</h4>
     <hr />
     <br />
     <div class="form-group">
         <div>Välj datum</div>
-        @Html.EditorFor(model => model.MötesTid, new { htmlAttributes = new { @class = "datepicker" } })
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beskrivning, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <div>
-        @{Html.RenderAction("Datum", "Mötes");
-        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.MötesTid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MötesTid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MötesTid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
     </div>
 }
 
 
+@*
+     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    @section scripts{
 
-@section scripts{
-
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script>
-        $(function () {
-            $(".datepicker").datepicker();
-        });
-    </script>
-}
+         <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+         <script>
+             $(function () {
+                 $(".datepicker").datepicker();
+             });
+         </script>
+     }*@
 
 
 
