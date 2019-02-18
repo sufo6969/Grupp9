@@ -15,6 +15,7 @@ namespace Grupp9.Models
         public string UserId { get; set; }
         public bool AccepteratMöte { get; set; }
         public bool InbjudenTillMöte { get; set; }
+        public DateTime MötesTid { get; set; }
     }
 
 
