@@ -39,15 +39,19 @@ namespace Grupp9.Controllers
             {
                 UserId = currentUser,
                 MötesBeskrivning = model.Beskrivning,
-                MöteId = model.MöteId,
+               
                 
             };
-           
+
+            db.Möte.Add(nyttMöte);
+            db.SaveChanges();
+            var nyttid = nyttMöte.MöteId;
+
             var nyttDatum = new Datum
             {
                 FörslagDatum = model.MötesTid.Value,
                 ValtDatum = model.MötesTid.Value,
-                MöteId = model.MöteId
+                MöteId = nyttid
             };
             db.Datumen.Add(nyttDatum);
 
@@ -101,6 +105,16 @@ namespace Grupp9.Controllers
             }
         }
 
+        public string VisaDatum (int Mötesid)
+        {
+            var db = new InfoDbContext();
+            var datum = db.Datumen.FirstOrDefault(x => x.MöteId == Mötesid);
+
+            return datum.ValtDatum.ToString();
+
+
+
+        }
 
         
     }

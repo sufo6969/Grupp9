@@ -14,6 +14,7 @@
         
         <th>
             @Html.DisplayNameFor(model => model.MötesBeskrivning)
+            
         </th>
         <th></th>
     </tr>
@@ -23,6 +24,7 @@
       
         <td>
             @Html.DisplayFor(modelItem => item.MötesBeskrivning)
+           @Html.Action("VisaDatum", "Mötes", new { Mötesid= item.MöteId })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MöteId }) |
