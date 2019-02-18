@@ -1,24 +1,31 @@
-﻿@model Grupp9.Models.DatumViewModel
+﻿@model Grupp9.Models.MötenViewModel
 
 @{
-    ViewBag.Title = "Datum";
+    ViewBag.Title = "Create";
 }
+
+
 
 @using (Html.BeginForm())
 {
-    <br />
-    @Html.EditorFor(model => model.FörslagDatum, new { htmlAttributes = new { @class = "datepicker" } })
+    @Html.AntiForgeryToken()
 
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div>Beskrivning</div>
+
+        @Html.EditorFor(model => model.Beskrivning, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Beskrivning, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
 }
-
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-
-@section scripts{
-
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script>
-        $(function () {
-            $(".datepicker").datepicker();
-        });
-    </script>
-}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
