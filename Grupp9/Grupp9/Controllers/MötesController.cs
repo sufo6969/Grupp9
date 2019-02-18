@@ -40,8 +40,15 @@ namespace Grupp9.Controllers
                 UserId = currentUser,
                 MötesBeskrivning = model.Beskrivning,
                 MöteId = model.MöteId,
-                valtdatum= model.MötesTid
+                
             };
+
+            var nyttDatum = new Datum
+            {
+                ValtDatum = model.MötesTid,
+                MöteId = model.MöteId
+            };
+            db.Datumen.Add(nyttDatum);
 
             db.Möte.Add(nyttMöte);
             db.SaveChanges();

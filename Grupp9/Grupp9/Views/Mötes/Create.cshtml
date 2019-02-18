@@ -1,4 +1,4 @@
-﻿@model Grupp9.Models.DatumViewModel
+﻿@model Grupp9.Models.MötenViewModel
 
 @{
     /**/
@@ -16,7 +16,7 @@
     <br />
     <div class="form-group">
         <div>Välj datum</div>
-        @Html.EditorFor(model => model.FörslagDatum, new { htmlAttributes = new { @class = "datepicker" } })
+        @Html.EditorFor(model => model.MötesTid, new { htmlAttributes = new { @class = "datepicker" } })
     </div>
 
     <div>
