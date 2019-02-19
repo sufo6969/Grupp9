@@ -23,6 +23,11 @@ namespace Grupp9.Controllers
             return View();
         }
 
+        public ActionResult Datum()
+        {
+            return View();
+        }
+
         // POST: Mötes/Create
         [HttpPost]
         public ActionResult Create(MötenViewModel model)
@@ -34,11 +39,23 @@ namespace Grupp9.Controllers
             {
                 UserId = currentUser,
                 MötesBeskrivning = model.Beskrivning,
-                MöteId = model.MöteId,
-                InbjudenEmail = model.InbjudenEmail
+               
+                
             };
 
             db.Möte.Add(nyttMöte);
+            db.SaveChanges();
+            var nyttid = nyttMöte.MöteId;
+
+            var nyttDatum = new Datum
+            {
+                FörslagDatum = model.MötesTid.Value,
+                ValtDatum = model.MötesTid.Value,
+                MöteId = nyttid
+            };
+            db.Datumen.Add(nyttDatum);
+
+            
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -60,8 +77,13 @@ namespace Grupp9.Controllers
         //    db.Möte.Add(nyInbjudan);
         //    db.SaveChanges();
 
-        //    return View();
-        //}
+        public string VisaDatum (int Mötesid)
+        {
+            var db = new InfoDbContext();
+            var datum = db.Datumen.FirstOrDefault(x => x.MöteId == Mötesid);
+
+            return datum.ValtDatum.ToString();
+        }
 
         
     }

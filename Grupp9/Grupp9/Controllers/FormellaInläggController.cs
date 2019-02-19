@@ -226,6 +226,7 @@ namespace Grupp9.Controllers
 
         }
 
+
         public ActionResult VisaKategori()
         {
             var db = new InfoDbContext();
