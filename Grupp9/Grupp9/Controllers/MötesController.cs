@@ -55,7 +55,7 @@ namespace Grupp9.Controllers
             };
             db.Datumen.Add(nyttDatum);
 
-            db.Möte.Add(nyttMöte);
+            
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -111,9 +111,6 @@ namespace Grupp9.Controllers
             var datum = db.Datumen.FirstOrDefault(x => x.MöteId == Mötesid);
 
             return datum.ValtDatum.ToString();
-
-
-
         }
 
         
